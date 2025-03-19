@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendendo Java</title>
+    <style>
+        button{
+            background-color: rgb(87, 2, 2);
+            border-radius: 15px;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            border: none;
+            margin:15px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <label>Informe seu nome</label>
+    <input type="text" placeholder="Ex:Maria" id="nome">
+    <label>Informe sua idade</label>
+    <input type="text" placeholder="Ex:18" id="idade">
+    <button onclick="greeting()">Cumprimentar</button>
+    <p></p>
+
+    <br/>
+    
+    <button onclick="ola()">Clique aqui</button><!-- acionado ao clicar no botao-->
+    
+    <script>
+        function greeting(){
+        let idadeDigitada =document.getElementById('idade')
+        var nomeDigitado = document.getElementById('nome')
+        if(nomeDigitado.value === '' || idadeDigitada === ''){
+            alert('O nome precisa ser informado')
+            nomeDigitado.focus()
+            return
+        }
+        if(idadeDigitada >=18){
+            idadeDigitada.value = 'Maior de idade'
+        }
+        else{
+            idadeDigitada.value = 'Menor de idade'
+        }
+        var paragrafo = document.getElementsByTagName('p')
+        paragrafo[0].innerHTML ='Olá '+nomeDigitado.value
+        paragrafo[1].innerHTML ='Voce é '+idadeDigitada.value
+        nomeDigitado.value =''
+        idadeDigitada.value =''
+}
+/* else{
+    alert('Bem-vindo(a) '+nomeDigitado.value)   
+    }*/
+        function ola(){//sera executado quando for acionado
+        var nome='maria' //variavel
+        alert(nome)//alerta quando inicia o site (print)
+}
+    </script>
+
+    
+    
+</body>
+</html>
