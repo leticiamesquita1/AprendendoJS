@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(17, 17, 17);
+            color: aliceblue;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h2{
+            background-color: rgb(85, 15, 15);
+            color: aliceblue;
+            width: 100px;
+            border-radius: 20px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h2:hover{
+            background-color: rgb(59, 9, 9);
+        }
+        input{
+            border-radius: 15px;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        button{
+            background-color: rgb(85, 15, 15);
+            color: aliceblue;
+            border-radius: 15px;
+            padding: 10px;
+            border: none;
+            margin-top: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        button:hover{
+            background-color: rgb(59, 9, 9);
+        }
+       ul{
+        background-color: rgb(85, 15, 15);
+        width: 10%;
+        border-radius: 20px;
+        
+       }
+    </style>
+</head>
+<body onload="listar()">
+    <h2>Arrays</h2>
+    <label>Informe veículo que deseja adicionar</label><br/>
+    <input type="text" placeholder="Ex:Corsa" id="carro">
+    
+    <div>
+        <input type="radio" id="inicio" name="posicao" value="inicio" checked>
+        <label for="inicio">Adicionar no início</label>
+        <input type="radio" id="final" name="posicao" value="final">
+        <label for="final">Adicionar no final</label>
+    </div>
+    
+    <button onclick="add()">Inserir</button>
+    <br/>
+    <p>Carros: <span id="garagem"></span></p>
+    <ul>
+        <!-- Itens inseridos via JS -->
+    </ul>
+    <script>
+        const cars = ['Opala', 'Fusca', 'TL'];
+        cars.push('Kombi');
+        cars.unshift('Motoca');
+      
+        document.getElementById('garagem').innerHTML = cars.toString();
+     
+        function listar(){
+            let itemLista = '';
+            for (let index = 0; index < cars.length; index++){
+                itemLista += '<li>' + cars[index] + '</li>';
+            }
+            document.getElementsByTagName('ul')[0].innerHTML = itemLista;
+        }
+       
+        function add(){
+            var carro = document.getElementById('carro').value;
+            var posicao = document.querySelector('input[name="posicao"]:checked').value;
+            
+            if (carro.trim() !== "") {
+                if (posicao === "inicio") {
+                    cars.unshift(carro);//botar no inicio
+                } else {
+                    cars.push(carro);//botar no final
+                }
+                
+                document.getElementById('garagem').innerHTML = cars.toString();
+                listar();
+                document.getElementById('carro').value = "";
+            }
+        }
+    </script>
+</body>
+</html>

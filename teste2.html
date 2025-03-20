@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(41, 38, 38);
+            color: aliceblue;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h2{
+            background-color: rgb(85, 15, 15);
+            color: aliceblue;
+            width: 100px;
+            border-radius: 20px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input{
+            border-radius: 15px;
+            border: none;
+            padding: 10px;
+            
+        }
+        button{
+            background-color: rgb(85, 15, 15);
+            color: aliceblue;
+            border-radius: 15px;
+            padding: 10px;
+            border: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body onload="listar()">
+    <h2>Arrays</h2>
+    <label>Informe veiculo que deseja adicionar</label><br/>
+    <input type="text" placeholder="Ex:Corsa" id="carro">
+    <input type="checkbox" checked id="onde">
+    <label>Inserir no inicio? </label>
+    
+    <br/>
+    <button onclick="add()">Inserir</button>
+
+    
+    
+    <br/>
+    <p>Carros: <span id="garagem"></span></p>
+    <ul>
+        <!-- Itens inserido via JS-->
+    </ul>
+    <script>
+        const cars = ['opala', 'fusca','TL']
+        cars.push('kombi')
+        cars.unshift('Motoca')
+      
+        document.getElementById('garagem').innerHTML = cars.toString()
+   
+        /* function ativarBotao(){
+        document.getElementsByTagName('button')[0].disabled = document.getElementById('carro').value >0
+     }*/
+
+        function listar(){
+        itemLista = ''
+        for (let index = 0; index < cars.length; index++){
+            itemLista += '<li>'+cars[index]+'</li>'
+        }
+        document.getElementsByTagName('ul')[0].innerHTML = itemLista
+    }
+       
+
+       function add(){
+        var carro =document.getElementById('carro')
+        if(document.getElementById('onde').checked){
+            cars.unshift(carro.value)
+        }
+        else{
+            cars.push(carro.value)
+        }
+        document.getElementById('garagem').innerHTML = cars.toString()
+        document.getElementById('carro').value =''
+        listar()
+        //document.getElementsByTagName('button')[0].disabled =true
+       }
+    </script>
+</body>
+</html>
