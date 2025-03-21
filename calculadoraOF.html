@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .calculadora{
+            background-color: rgb(225, 237, 255);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            width: 250px;
+            height: 270px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 50px;
+        }
+        input{
+            width: 90%;
+            background-color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 13px;
+            padding: 7px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        .botoes{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .botoes button{
+            font-size: 1.5em;
+            font-family: 'Courier New', Courier, monospace;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: white;
+            transition: 0.3s;
+        }
+        .botoes button:nth-child(1){
+            background-color:rgb(204, 224, 255);
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+        .botoes button:nth-child(2){
+            background-color:rgb(204, 224, 255) ;
+        
+        }
+        .botoes button:nth-child(6),
+        .botoes button:nth-child(10),
+        .botoes button:nth-child(14){
+            background-color: rgb(204, 224, 255);
+        }
+        .botoes button:nth-child(15){
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+        .botoes button:nth-child(16){
+           background-color:rgb(204, 224, 255) ; 
+        }
+        .botoes button:hover{
+            background-color: rgb(191, 217, 255);
+        }
+        .dica{
+            display: flex;
+            justify-content: center;
+            background-color: rgb(204, 224, 255);
+            border-radius: 20px;
+            height: 20px;
+            padding: 20px;
+            margin-left: 100px;
+        }
+        .dica:hover{
+            background-color: rgb(191, 217, 255);
+        }
+     
+    </style>
+</head>
+<body>
+    <a class="dica" onclick="dica()"> DICA</a>
+    <div class="calculadora">
+        <input type="text" id="tela" disabled>
+        <div class="botoes">
+            <button onclick="limpaTela()">C</button>
+            <button onclick="adicionarNaTela('/')">/</button>
+            <button onclick="adicionarNaTela('7')">7</button>
+            <button onclick="adicionarNaTela('8')">8</button>
+            <button onclick="adicionarNaTela('9')">9</button>
+            <button onclick="adicionarNaTela('x')">x</button>
+            <button onclick="adicionarNaTela('4')">4</button>
+            <button onclick="adicionarNaTela('5')">5</button>
+            <button onclick="adicionarNaTela('6')">6</button>
+            <button onclick="adicionarNaTela('-')">-</button>
+            <button onclick="adicionarNaTela('1')">1</button>
+            <button onclick="adicionarNaTela('2')">2</button>
+            <button onclick="adicionarNaTela('3')">3</button>
+            <button onclick="adicionarNaTela('+')">+</button>
+            <button onclick="adicionarNaTela('0')">0</button>
+            <button onclick="calculaResult()">=</button>
+        </div>
+    </div>
+    <script>
+        function dica(){
+        alert('Dica: Não use muitos zeros (0) e nem números muito grandes')
+        }
+        function adicionarNaTela(value){
+            document.getElementById('tela').value +=value
+        }
+        function limpaTela(){
+            document.getElementById('tela').value =''
+        }
+        function calculaResult(){
+            try { //se (faça)                          STRING
+                document.getElementById('tela').value = eval(document.getElementById('tela').value);
+            }catch (erro) {//senao
+                alert('Erro');
+                limpaTela();
+            }
+        }
+    </script>
+</body>
+</html>
