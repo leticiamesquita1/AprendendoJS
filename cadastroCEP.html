@@ -1,93 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEP</title>
     <style>
-        body{
-            font-family:'Courier New', Courier, monospace;
+        body {
+            font-family: 'Courier New', Courier, monospace;
             max-width: 400px;
             margin: auto;
             margin-top: 60px;
             padding: 20px;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
-        label{
+
+        label {
             display: block;
-            margin-top:10px
+            margin-top: 10px;
         }
+
+        h2 {
+            text-align: center;
+            background-color: #dddbff;
+            padding: 5px;
+            border-radius: 20px;
+            color: rgb(37, 37, 37);
+        }
+
         input {
-            width: 100%;
+            width: 97%;
             padding: 5px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 10px;
         }
-        button {
-            width: 80%;
-            padding: 10px;
-            margin-top: 20px;
-            margin-left: 40px;
-            background-color: #dddbff;
-            color: rgb(161, 161, 161);
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #c4c1ff;
 
+        input:hover {
+            -webkit-filter: drop-shadow(3px 3px 3px rgba(173, 173, 173, 0.5));
+            filter: drop-shadow(3px 3px 3px rgba(138, 138, 138, 0.5));
+        }
+
+        .button {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .button a {
+            color: white;
+            font-family:'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #dddbff;
+            display: block;
+            position: relative;
+            padding: 20px 40px;
+
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            text-shadow: 0px 1px 0px #000;
+            filter: dropshadow(color=#000, offx=0px, offy=1px);
+
+            -webkit-box-shadow: inset 0 1px 0 #dddbff, 0 10px 0 #8783cf;
+            -moz-box-shadow: inset 0 1px 0 #dddbff, 0 10px 0  #8783cf;
+            box-shadow: inset 0 1px 0 #dddbff, 0 10px 0  #8783cf;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .button a:active {
+            top: 10px;
+            background-color: #aba8e4;
+
+            -webkit-box-shadow: inset 0 1px 0 #dddbff, inset 0 -3px 0  #aba8e4;
+            -moz-box-shadow: inset 0 1px 0 #dddbff, inset 0 -3pxpx 0  #aba8e4;
+            box-shadow: inset 0 1px 0 #dddbff, inset 0 -3px 0  #aba8e4;
+        }
+
+        .button:after {
+            content: "";
+            height: 100%;
+            width: 100%;
+            padding: 2px;
+            position: absolute;
+            bottom: -12px;
+            left: -2px;
+            z-index: -1;
+            background-color: #31291f;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .cidade-estado {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cidade-estado div {
+            flex: 1;
         }
     </style>
 </head>
-<body>
-<form id="cadastroForm">
-    <h2>Cadastro</h2>
-    <label>Nome</label>
-    <input type="text" id="nome" required> <!-- O REQUIRED É OBRIGATORIO ANTES DE ENTREGAR O FORM-->
-    <label>Email</label>
-    <input type="email" id="email"required>
-    <label>Telefone</label>
-    <input type="tel" id="fone"required>
 
-    <label>CEP</label>
-    <input type="text" id="cep" onblur="loadLogradouro()" required >
-    <label>Logradouro</label>
-    <input type="text" id="logradouro"required>
-    <label>Bairro</label>
-    <input type="text" id="bairro"required>
-    <label>Cidade</label>
-    <input type="text" id="cidade"required>
-    <label>Estado</label>
-    <input type="text" id="estado"required>
-    <button type="submit">Salvar</button>
-</form>
+<body>
+    <form id="cadastroForm">
+        <h2>Cadastro</h2>
+        <label>Nome</label>
+        <input type="text" id="nome" required>
+        <label>Email</label>
+        <input type="email" id="email" required>
+        <label>Telefone</label>
+        <input type="tel" id="fone" required>
+
+        <label>CEP</label>
+        <input type="text" id="cep" onblur="loadLogradouro()" required> <!-- When the input loses focus, the function is called -->
+        <label>Logradouro</label>
+        <input type="text" id="logradouro" required>
+        <label>Bairro</label>
+        <input type="text" id="bairro" required>
+
+        <div class="cidade-estado">
+            <div>
+                <label>Cidade</label>
+                <input type="text" id="cidade" required>
+            </div>
+            <div>
+                <label>Estado</label>
+                <input type="text" id="estado" required>
+            </div>
+        </div>
+
+        <div ontouchstart="">
+            <div class="button">
+                <a href="#">Salvar</a>
+            </div>
+        </div>
+    </form>
 
     <script>
-    
-    function loadLogradouro(){
-        var cep = document.getElementById('cep').value
-        if(cep.length === 8){ //LENGTH 
-            fetch(`http://viacep.com.br/ws/${cep}/json/`)
-            .then(response => response.json())
-            .then(data => {
-                if(!data.erro){
-                    document.getElementById('logradouro').value = data.logradouro
-                    document.getElementById('bairro').value = data.bairro
-                    document.getElementById('cidade').value = data.localidade
-                    document.getElementById('estado').value = data.uf
-
-                }
-            })
-        .catch(error => console.error('Erro ao buscar CEP',error))
+        function loadLogradouro() {
+            var cep = document.getElementById('cep').value; //obtem o valor digitado do campo cep
+            if (cep.length === 8) { //se tiver 8 digitos, a funcao sera ativada
+                fetch(`http://viacep.com.br/ws/${cep}/json/`) //função fetch faz uma requisição para a API do ViaCEP.
+                    .then(response => response.json()) //converte a resposta recebida da API para JSON.
+                    .then(data => { //verifica se o cep existe
+                        if (!data.erro) { //O operador ! (negação) significa "se não existir o erro", ou seja, se o CEP for válido
+                            document.getElementById('logradouro').value = data.logradouro; //Se o CEP for válido, preenche 
+                            document.getElementById('bairro').value = data.bairro;         //automaticamente os campos do 
+                            document.getElementById('cidade').value = data.localidade;     //formulário com os dados retornados da API
+                            document.getElementById('estado').value = data.uf;
+                        }
+                    })
+                    .catch(error => console.error('Erro ao buscar CEP', error)); // caso falhe um erro sera exibido no console
+            }
         }
-        }
-      
-      
     </script>
 </body>
+
 </html>
